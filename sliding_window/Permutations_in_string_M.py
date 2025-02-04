@@ -29,12 +29,16 @@ class Solution:
         s1_map = [0] * 26
         s2_map = [0] * 26
 
-        for i in range(n1):
+        for i in range(n1): # build the frequency map for the first window
             s1_map[ord(s1[i]) - 97] += 1 
             s2_map[ord(s2[i]) - 97] += 1
         
+        # compare the frequency maps of the first window
         if s1_map == s2_map: return True
 
+        # slide the window and compare the frequency maps
+        # the window starts from n1 as we already compared the first window
+        # we slide the window to the right by 1 and compare the frequency maps
         for i in range(n1, n2):
             s2_map[ord(s2[i]) - 97] += 1 
             s2_map[ord(s2[i - n1]) - 97] -= 1
