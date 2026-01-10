@@ -30,3 +30,35 @@ class Solution:
         return res
     
 # Binary Search Solution
+class Solution:
+    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        products.sort() # O(nlogn)
+        n = len(products)
+        res = []
+        prefix = ""
+
+        for ch in searchWord:
+            temp = []
+            prefix += ch
+            starting_index = self.binary_search(products, prefix) # used to find starting index from which we can look      
+            # this loop looks for 3 words from starting index
+            for i in range(starting_index, min(starting_index + 3, n)):
+                if products[i].startswith(prefix):
+                    temp.append(products[i])
+
+            res.append(temp)
+        return res
+        
+    def binary_search(self, array, target):
+        l = 0
+        r = len(array)
+
+        while l < r:
+            mid = (l + r) // 2
+            if array[mid] < target:
+                l = mid + 1
+            else:
+                r = mid
+        
+        # we return the starting index after the binary search cause we need the next 3 words
+        return l
