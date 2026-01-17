@@ -1,5 +1,33 @@
+"""
+PROBLEM: 132 Pattern (LeetCode 456 - Medium)
+---------------------------------------------
+Find if there exists i < j < k such that nums[i] < nums[k] < nums[j].
+Return true if such pattern exists.
+
+Example:
+Input: [3,1,4,2]
+Output: true (1 < 2 < 4)
+
+KEY INSIGHT: Monotonic stack scanning from right to left.
+- Maintain decreasing stack
+- Track nums[k] as the largest value popped
+- If we find nums[i] < nums[k], we found the pattern
+"""
+
 from collections import deque
 class Solution:
+    """
+    APPROACH: Monotonic Decreasing Stack (Right to Left)
+    
+    INTUITION:
+    - Scan right to left, looking for nums[i] (smallest)
+    - Maintain decreasing stack containing potential nums[j] values
+    - When we find larger nums[i], pop smaller values as nums[k]
+    - If current < nums[k], we found i < k < j pattern
+    
+    TIME: O(n)
+    SPACE: O(n)
+    """
     def find132pattern(self, nums: List[int]) -> bool:
         num_k = -1* float('inf') # set the nums[k]
         stack = deque()

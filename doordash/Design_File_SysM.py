@@ -1,3 +1,21 @@
+"""
+PROBLEM: Design File System (LeetCode 1166 - Medium)
+-----------------------------------------------------
+Implement a file system with:
+- createPath(path, value): creates new path and associates value. Returns false if path exists or parent doesn't exist.
+- get(path): returns value associated with path, or -1 if doesn't exist.
+
+Example:
+createPath("/a", 1) -> true
+createPath("/a/b", 2) -> true
+createPath("/c/d", 1) -> false (parent /c doesn't exist)
+get("/a/b") -> 2
+
+KEY INSIGHT: Trie/Prefix Tree for hierarchical path structure.
+- Each node represents a directory/file
+- Split path by '/' and traverse/create nodes
+"""
+
 class TrieNode:
     def __init__(self):
         self.children = {}

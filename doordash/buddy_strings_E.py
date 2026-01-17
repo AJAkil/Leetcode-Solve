@@ -1,5 +1,35 @@
+"""
+PROBLEM: Buddy Strings (LeetCode 859 - Easy)
+---------------------------------------------
+Given two strings s and goal, return true if you can swap two letters in s
+so it equals goal.
+
+Example:
+Input: s = "ab", goal = "ba"
+Output: true
+
+KEY INSIGHT: Check character frequencies and position differences.
+- Must have same character frequencies (anagram)
+- Either exactly 2 positions differ (and swappable)
+- Or 0 positions differ AND has duplicate char (swap duplicates)
+"""
+
 from collections import Counter
 class Solution:
+    """
+    APPROACH: Frequency Count + Position Diff Count
+    
+    INTUITION:
+    - If lengths differ -> false
+    - If char frequencies differ -> false
+    - Count position differences:
+      * diff == 2: can swap to match
+      * diff == 0: need duplicate char to swap with itself
+      * otherwise: false
+    
+    TIME: O(n)
+    SPACE: O(1)
+    """
     def buddyStrings(self, s: str, goal: str) -> bool:
         if len(s) != len(goal):
             return False

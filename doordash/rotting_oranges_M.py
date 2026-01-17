@@ -1,5 +1,35 @@
+"""
+PROBLEM: Rotting Oranges (LeetCode 994 - Medium)
+-------------------------------------------------
+Grid with 0 (empty), 1 (fresh orange), 2 (rotten orange).
+Every minute, rotten oranges make adjacent (4-directional) fresh oranges rotten.
+Return minimum minutes until no fresh oranges remain, or -1 if impossible.
+
+Example:
+Input: [[2,1,1],
+        [1,1,0],
+        [0,1,1]]
+Output: 4
+
+KEY INSIGHT: Multi-source BFS - all rotten oranges spread simultaneously.
+- Similar to: Walls and Gates, 01 Matrix
+- Track fresh count to determine if all oranges can rot
+"""
+
 from collections import deque
 class Solution:
+    """
+    APPROACH: Multi-Source BFS
+    
+    INTUITION:
+    - Start BFS from ALL rotten oranges simultaneously (not one by one)
+    - Process level by level - each level = 1 minute passed
+    - Decrement fresh count when orange rots
+    - If fresh > 0 at end, return -1
+    
+    TIME: O(m*n)
+    SPACE: O(m*n)
+    """
     def orangesRotting(self, grid: List[List[int]]) -> int:
         ROWS = len(grid)
         COLS = len(grid[0])
